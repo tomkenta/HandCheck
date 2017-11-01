@@ -45,7 +45,9 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "guard-rspec"
+  gem "terminal-notifier-guard"
   gem "spring-commands-rspec"
+  gem "rails-controller-testing"
 
 end
 
