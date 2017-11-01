@@ -70,6 +70,27 @@ class Hand
     end
   end
 
+  def check
+    if is_straight_flash?
+      "ストレート・フラッシュ"
+    elsif is_four_card?
+      "フォー・オブ・ア・カインド"
+    elsif is_full_house?
+      "フルハウス"
+    elsif is_flash?
+      "フラッシュ"
+    elsif is_straight?
+      "ストレート"
+    elsif is_three_card?
+      "スリー・オブ・ア・カインド"
+    elsif is_two_pair?
+      "ツーペア"
+    elsif is_pair?
+      "ワンペア"
+    else
+      "ハイカード"
+    end
+  end
 end
 
 
