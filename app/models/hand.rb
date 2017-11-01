@@ -17,7 +17,7 @@ class Hand
   def separate(input)
     hands = []
     input.split.each do |ele|
-      hands << {"suit":ele[0], "num":ele[1]}
+      hands << {"suit":ele.slice!(0), "num":ele}
     end
     hands
   end
@@ -35,7 +35,8 @@ class Hand
     @hands.each do |hand|
       arr << hand[:num].to_i
     end
-    arr.sort.each_cons(2).all? { |x,y| y == x + 1 }
+    arr.sort!
+    arr.each_cons(2).all? { |x,y| y == x + 1 } || arr == [1,10,11,12,13]
   end
 
   def is_straight_flash?
