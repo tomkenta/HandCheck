@@ -5,18 +5,17 @@ class API < Grape::API
 
   helpers do
     def check
-      # hand = Hand.new(params[:s_hands])
-      # {
-      #   card: params[:s_hands],
-      #   hand: hand.check,
-      #   best: false
-      # }
       res_arr = []
-      params[:cards].each do |hand|
+      hands = []
+
+      params[:cards].each do |s_hand|
+        hands << Hand.new(s_hand)
+      end
+      hands.each do |hand|
         res_arr << {
-          "card": hand,
-          "hand": Hand.new(hand).check,
-          "best": false
+          "card": hand.to_string,
+          "hand": hand.check[:name],
+          "best": hands.all? {|e| hand.is_stronger_than_or_eqaul(e)}
         }
       end
       {"result": res_arr}

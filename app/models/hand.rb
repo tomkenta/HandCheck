@@ -2,6 +2,7 @@ class Hand
   attr_accessor :hands, :count_hash
 
   def initialize(hands)
+    @str = hands
     @hands = separate(hands)
     @count_hash = Hash.new(0)
 
@@ -12,6 +13,10 @@ class Hand
 
   def set(hands)
     @hands = @hands.initialize(separate(hands))
+  end
+
+  def to_string
+    @str
   end
 
   def separate(input)
@@ -73,24 +78,28 @@ class Hand
 
   def check
     if is_straight_flash?
-      "ストレート・フラッシュ"
+      {"name": "ストレート・フラッシュ", "power": 8}
     elsif is_four_card?
-      "フォー・オブ・ア・カインド"
+      {"name": "フォー・オブ・ア・カインド", "power": 7}
     elsif is_full_house?
-      "フルハウス"
+      {"name": "フルハウス", "power": 6}
     elsif is_flash?
-      "フラッシュ"
+      {"name": "フラッシュ", "power": 5}
     elsif is_straight?
-      "ストレート"
+      {"name": "ストレート", "power": 4}
     elsif is_three_card?
-      "スリー・オブ・ア・カインド"
+      {"name": "スリー・オブ・ア・カインド", "power": 3}
     elsif is_two_pair?
-      "ツーペア"
+      {"name": "ツーペア", "power": 2}
     elsif is_pair?
-      "ワンペア"
+      {"name": "ワンペア", "power": 1}
     else
-      "ハイカード"
+      {"name": "ハイカード", "power": 0}
     end
+  end
+
+  def is_stronger_than_or_eqaul(hand) #diffrent hand
+    check[:power] >= hand.check[:power]
   end
 end
 
