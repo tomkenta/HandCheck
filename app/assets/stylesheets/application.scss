@@ -1,0 +1,23 @@
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+
+body {
+  background-color: #eaeaea
+}
+
+.container {
+  margin: 30px;
+}
+
+.panel-body {
+  form {
+    margin: 10px;
+  }
+  @media screen and (max-width:767px) {
+    button {
+      margin-top:5px;
+    }
+  }
+}
+
+
