@@ -1,0 +1,15 @@
+<h1>Hands#index</h1>
+<form action=<%= hands_index_path %> method="get" accept-charset="utf-8" class="form-inline">
+  <input class="form-control" type="text" name="s_hands" value="<%= request[:s_hands] %>">
+  <button class="btn btn-default" type="submit">検索</button>
+</form>
+<div class="result">
+  <h2>
+    <% if @hands.present? %>
+    <%= render 'result', hands: @hands %>
+    <% else %>
+    yey
+    <% end %>
+  </h2>
+</div>
+
