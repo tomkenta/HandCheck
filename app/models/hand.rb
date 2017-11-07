@@ -5,8 +5,8 @@ class Hand
   validates :string, format: { with: /\A[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\z/, message: "hogehoge" }
 
   def initialize(hands)
-    @string = hands
-    @hands = separate(hands)
+    @string     = hands
+    @hands      = separate(hands)
     @count_hash = Hash.new(0)
 
     @hands.each do |hand|
@@ -17,17 +17,16 @@ class Hand
   def separate(input)
     hands = []
     input.split.each do |ele|
-      hands << {"suit":ele.slice!(0), "num":ele}
+      hands << { "suit": ele.slice!(0), "num": ele }
     end
     hands
   end
 
   def is_flash?
-    flag = true
     @hands[1..4].each do |hand|
-      flag = false if @hands[0][:suit] != hand[:suit]
+      return false if @hands[0][:suit] != hand[:suit]
     end
-    flag
+    true
   end
 
   def is_straight?
@@ -36,7 +35,7 @@ class Hand
       arr << hand[:num].to_i
     end
     arr.sort!
-    arr.each_cons(2).all? { |x,y| y == x + 1 } || arr == [1,10,11,12,13]
+    arr.each_cons(2).all? {|x, y| y == x + 1} || arr == [1, 10, 11, 12, 13]
   end
 
   def is_straight_flash?
@@ -61,11 +60,11 @@ class Hand
 
   def is_full_house?
     if is_three_card?
-       true if @count_hash.values.sort.reverse[1] >= 2 #カードが5枚同じの来る時error
-     end
-   end
+      true if @count_hash.values.sort.reverse[1] >= 2 #カードが5枚同じの来る時error
+    end
+  end
 
-   def is_two_pair?
+  def is_two_pair?
     unless is_three_card?
       true if @count_hash.values.sort.reverse[0] == 2 && @count_hash.values.sort.reverse[1] == 2
     end
@@ -73,23 +72,23 @@ class Hand
 
   def check
     if is_straight_flash?
-      {"name": "ストレート・フラッシュ", "power": 8}
+      { "name": "ストレート・フラッシュ", "power": 8 }
     elsif is_four_card?
-      {"name": "フォー・オブ・ア・カインド", "power": 7}
+      { "name": "フォー・オブ・ア・カインド", "power": 7 }
     elsif is_full_house?
-      {"name": "フルハウス", "power": 6}
+      { "name": "フルハウス", "power": 6 }
     elsif is_flash?
-      {"name": "フラッシュ", "power": 5}
+      { "name": "フラッシュ", "power": 5 }
     elsif is_straight?
-      {"name": "ストレート", "power": 4}
+      { "name": "ストレート", "power": 4 }
     elsif is_three_card?
-      {"name": "スリー・オブ・ア・カインド", "power": 3}
+      { "name": "スリー・オブ・ア・カインド", "power": 3 }
     elsif is_two_pair?
-      {"name": "ツーペア", "power": 2}
+      { "name": "ツーペア", "power": 2 }
     elsif is_pair?
-      {"name": "ワンペア", "power": 1}
+      { "name": "ワンペア", "power": 1 }
     else
-      {"name": "ハイカード", "power": 0}
+      { "name": "ハイカード", "power": 0 }
     end
   end
 
