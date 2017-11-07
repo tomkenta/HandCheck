@@ -1,23 +1,40 @@
-  require 'rails_helper'
+require 'rails_helper'
 
-  RSpec.describe HandsController, type: :controller do
+RSpec.describe HandsController, type: :controller do
 
-    describe "GET #index" do
-      context 'ポーカーのカードを入力したとき' do
+  describe "GET #index" do
+
+    context "カードが入力されていない場合" do
+      before do
+        get :index
+      end
+      example "@handsにインスタンスは入らない" do
+        expect(assigns(:hands)).to be nil
+      end
+      example "同じ画面に戻る" do
+        expect(response).to render_template :index
+      end
+    end
+
+
+    context "カードが入力されている場合" do
+      context "値が期待した値以外" do
         before do
-        get :index, params:{s_hands:"H1 H2 H3 H4 H5"}
+          get :index, params: { s_hands: "hogehoge" }
         end
-        it "@リクエストは200 okになること" do
-          expect(response.status).to eq 200
+        example "validationが動いて弾く" do
+          expect(assigns(:hands).valid?).to eq false;
         end
-        it "@handsに,新規オブジェクトが格納されていること" do
+      end
 
+      context "値が期待した値" do
+        before do
+          get :index, params: { s_hands: "H1 H2 H3 H4 H5" }
         end
-
-        it ":indexテンプレートが表示されること" do
-          expect(response).to render_template :index
+        example "カードの役が表示される" do
+          expect(assigns(:hands).check[:name]).to eq "ストレート・フラッシュ"
         end
-
       end
     end
   end
+end
