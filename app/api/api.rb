@@ -13,7 +13,7 @@ class API < Grape::API
       end
       hands.each do |hand|
         res_arr << {
-          "card": hand.to_string,
+          "card": hand.string,
           "hand": hand.check[:name],
           "best": hands.all? {|e| hand.is_stronger_than_or_eqaul(e)}
         }

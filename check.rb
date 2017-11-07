@@ -61,7 +61,6 @@ class Hands
 end
 
 
-
 p 'カードを入力してください 例:H1 H3 H3 H4 H5'
 # input = gets
 input = 'H2 H4 H5 H3 H1'
@@ -72,10 +71,3 @@ end
 
 hand1 = Hands.new(hands)
 
-p hand1.is_flash?
-p hand1.is_four_card?
-p hand1.is_full_house?
-p hand1.is_two_pair?
-p hand1.is_pair?
-p hand1.is_straight?
-p hand1.is_straight_flash?

@@ -11,6 +11,7 @@
           expect(response.status).to eq 200
         end
         it "@handsに,新規オブジェクトが格納されていること" do
+
         end
 
         it ":indexテンプレートが表示されること" do

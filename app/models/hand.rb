@@ -1,22 +1,17 @@
 class Hand
-  attr_accessor :hands, :count_hash
+  include ActiveModel::Model
+  attr_accessor :hands, :count_hash, :string
+
+  validates :string, format: { with: /\A[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\z/, message: "hogehoge" }
 
   def initialize(hands)
-    @str = hands
+    @string = hands
     @hands = separate(hands)
     @count_hash = Hash.new(0)
 
     @hands.each do |hand|
       @count_hash[hand[:num]] += 1
     end
-  end
-
-  def set(hands)
-    @hands = @hands.initialize(separate(hands))
-  end
-
-  def to_string
-    @str
   end
 
   def separate(input)
@@ -98,16 +93,11 @@ class Hand
     end
   end
 
-  def is_stronger_than_or_eqaul(hand) #diffrent hand
+  def is_stronger_than_or_eqaul(hand) # hand is an instance of this class
     check[:power] >= hand.check[:power]
   end
 end
 
 
-# p 'カードを入力してください 例:H1 H3 H3 H4 H5'
-# # input = gets
-# input = 'H2 H4 H5 H3 H1'
 
-
-# hand1 = Hands.new(hands)
 
