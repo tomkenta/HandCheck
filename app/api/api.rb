@@ -6,7 +6,7 @@ class API < Grape::API
   helpers do
     def check
       res_arr = []
-      hands = []
+      hands   = []
 
       params[:cards].each do |s_hand|
         hands << Hand.new(s_hand)
@@ -14,11 +14,11 @@ class API < Grape::API
       hands.each do |hand|
         res_arr << {
           "card": hand.string,
-          "hand": hand.check[:name],
+          "hand": (hand.valid?) ? hand.check[:name] : 'invalid',
           "best": hands.all? {|e| hand.is_stronger_than_or_eqaul(e)}
         }
       end
-      {"result": res_arr}
+      { "result": res_arr }
     end
 
     def err401
@@ -35,6 +35,7 @@ class API < Grape::API
     post :check do
       check if params[:cards].present?
     end
+
     get :secret do
       err401
     end
