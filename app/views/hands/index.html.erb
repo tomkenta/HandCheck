@@ -9,12 +9,11 @@
         <button class="btn btn-default" type="submit">Check</button>
       </form>
       <div class="result">
-          <% if @hands.present? %>
-          <%= render 'result', hands: @hands %>
-          <% else %>
-          5つのカード指定文字を半角スペース区切りで入力してください。<br>
-          （例："S1 H3 D9 C13 S11"）
-          <% end %>
+        <% if @hands.present? %>
+            <%= render 'result', hands: @hands %>
+        <% else %>
+            <p>5つのカード指定文字を半角スペース区切りで入力してください。<br>（例："S1 H3 D9 C13 S11"）</p>
+        <% end %>
         </p>
       </div>
     </div>

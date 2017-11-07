@@ -1,23 +1,28 @@
 <% if hands.valid? %>
-  <% if hands.is_straight_flash? %>
-  <p>ストレート・フラッシュ</p>
-  <% elsif hands.is_four_card? %>
-  <p>フォー・オブ・ア・カインド</p>
-  <% elsif hands.is_full_house? %>
-  <p>フルハウス</p>
-  <% elsif hands.is_flash? %>
-  <p>フラッシュ</p>
-  <% elsif hands.is_straight? %>
-  <p>ストレート</p>
-  <% elsif hands.is_three_card? %>
-  <p>スリー・オブ・ア・カインド</p>
-  <% elsif hands.is_two_pair? %>
-  <p>ツーペア</p>
-  <% elsif hands.is_pair? %>
-  <p>ワンペア</p>
-  <% else %>
-  <p>ハイカード</p>
-  <% end %>
+    <% if hands.is_straight_flash? %>
+        <p>ストレート・フラッシュ</p>
+    <% elsif hands.is_four_card? %>
+        <p>フォー・オブ・ア・カインド</p>
+    <% elsif hands.is_full_house? %>
+        <p>フルハウス</p>
+    <% elsif hands.is_flash? %>
+        <p>フラッシュ</p>
+    <% elsif hands.is_straight? %>
+        <p>ストレート</p>
+    <% elsif hands.is_three_card? %>
+        <p>スリー・オブ・ア・カインド</p>
+    <% elsif hands.is_two_pair? %>
+        <p>ツーペア</p>
+    <% elsif hands.is_pair? %>
+        <p>ワンペア</p>
+    <% else %>
+        <p>ハイカード</p>
+    <% end %>
 <% else %>
-  <p>hogehoge</p>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        入力に誤りがあります!!
+      </div>
+      <div class="panel-body"><p>5つのカード指定文字を半角スペース区切りで入力してください。<br>（例："S1 H3 D9 C13 S11"）</p></div>
+    </div>
 <% end %>
