@@ -35,7 +35,7 @@ class API < Grape::API
     end
 
     post :check do
-      check if params[:cards].present?
+      (params[:cards].present?) ? check : err401
     end
 
     get :secret do

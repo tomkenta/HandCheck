@@ -10,7 +10,7 @@ RSpec.describe "Apis", type: :request do
         post '/api/v1/cards/check', params: params
       end
       example "apiが正常に動くか" do
-        expect(response.status).to have_http_status(201)
+        expect(response).to have_http_status 201
       end
 
       example "期待したJSONを返すか" do
@@ -28,6 +28,16 @@ RSpec.describe "Apis", type: :request do
       end
     end
     context "異常系" do
+      context "パラメータがない" do
+        before do
+          host! "localhost:3000"
+          post '/api/v1/cards/check', params: {}
+        end
+
+        example "401が返ってくる" do
+          expect(response).to have_http_status 401
+        end
+      end
     end
   end
 end
