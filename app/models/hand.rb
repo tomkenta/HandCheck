@@ -2,7 +2,8 @@ class Hand
   include ActiveModel::Model
   attr_accessor :hands, :count_hash, :string
 
-  validates :string, format: { with: /\A[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\z/, message: "hogehoge" }
+  validates :string, format: { with: /\A[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\s[SHDC][1-9][0-3]?\z/, message: "文字列が指定したフォーマットではありません" }
+  validate :cards_cannot_be_double
 
   def initialize(hands)
     @string     = hands
@@ -20,6 +21,12 @@ class Hand
       hands << { "suit": ele.slice!(0), "num": ele }
     end
     hands
+  end
+
+  def cards_cannot_be_double
+    unless @hands === @hands.uniq
+      errors.add(:hands, "カードは重複できません")
+    end
   end
 
   def is_flash?

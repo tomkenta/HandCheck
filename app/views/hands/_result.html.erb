@@ -21,8 +21,17 @@
 <% else %>
     <div class="panel panel-danger">
       <div class="panel-heading">
-        入力に誤りがあります!!
+        <h4>入力に誤りがあります!!</h4>
       </div>
-      <div class="panel-body"><p>5つのカード指定文字を半角スペース区切りで入力してください。<br>（例："S1 H3 D9 C13 S11"）</p></div>
+      <div class="panel-body">
+        <ul>
+          <% hands.errors.full_messages.each do |msg| %>
+              <li>
+                <b><%= msg %></b>
+              </li>
+          <% end %>
+        </ul>
+        <p>5つのカード指定文字を半角スペース区切りで入力してください。<br>（例："S1 H3 D9 C13 S11"）</p>
+      </div>
     </div>
 <% end %>
