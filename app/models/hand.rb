@@ -99,7 +99,7 @@ class Hand
     end
   end
 
-  def is_stronger_than_or_eqaul(hand) # hand is an instance of this class
-    check[:power] >= hand.check[:power]
-  end
+  # def is_stronger_than_or_eqaul(hand) # hand is an instance of this class
+  #   check[:power] >= hand.check[:power]
+  # end
 end
