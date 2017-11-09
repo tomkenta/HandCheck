@@ -38,6 +38,19 @@ RSpec.describe "Apis", type: :request do
           expect(response).to have_http_status 401
         end
       end
+      context "関係のないパスを叩く" do
+
+        for path in ["/v1", "/v1/hogehoge", "/v1/cards/hogehoge", "/v1/cards/check/hogehoge"]
+          before do
+            host! "localhost:3000/api"
+            post path
+          end
+
+          example "404が返ってくる" do
+            expect(response).to have_http_status 404
+          end
+        end
+      end
     end
   end
 end
