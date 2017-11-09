@@ -1,23 +1,5 @@
 <% if hands.valid? %>
-    <% if hands.is_straight_flash? %>
-        <p>ストレート・フラッシュ</p>
-    <% elsif hands.is_four_card? %>
-        <p>フォー・オブ・ア・カインド</p>
-    <% elsif hands.is_full_house? %>
-        <p>フルハウス</p>
-    <% elsif hands.is_flash? %>
-        <p>フラッシュ</p>
-    <% elsif hands.is_straight? %>
-        <p>ストレート</p>
-    <% elsif hands.is_three_card? %>
-        <p>スリー・オブ・ア・カインド</p>
-    <% elsif hands.is_two_pair? %>
-        <p>ツーペア</p>
-    <% elsif hands.is_pair? %>
-        <p>ワンペア</p>
-    <% else %>
-        <p>ハイカード</p>
-    <% end %>
+    <h4><%= hands.check[:name] %></h4>
 <% else %>
     <div class="panel panel-danger">
       <div class="panel-heading">

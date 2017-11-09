@@ -103,7 +103,3 @@ class Hand
     check[:power] >= hand.check[:power]
   end
 end
-
-
-
-
