@@ -28,7 +28,7 @@ RSpec.describe HandsController, type: :controller do
           get :index, params: { s_hands: "hogehoge" }
         end
         example "validationが動いて弾く" do
-          expect(assigns(:hands).valid?).to eq false;
+          expect(assigns(:hands).valid?).to eq false
         end
       end
       context "値が期待した値以外（マーク）" do
@@ -37,7 +37,7 @@ RSpec.describe HandsController, type: :controller do
         end
 
         example "validationが動いて弾く" do
-          expect(assigns(:hands).valid?).to eq false;
+          expect(assigns(:hands).valid?).to eq false
         end
       end
       context "値が期待した値以外（数字）" do
